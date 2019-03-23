@@ -19,7 +19,6 @@
 
 package c4.colorfulpotions.common;
 
-import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.potion.PotionUtils;

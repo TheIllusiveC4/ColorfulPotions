@@ -21,7 +21,6 @@ package c4.colorfulpotions;
 
 import c4.colorfulpotions.common.RecipePotionDyes;
 import c4.colorfulpotions.proxy.IProxy;
-import net.minecraft.init.Blocks;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.FMLLog;
@@ -30,10 +29,8 @@ import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLFingerprintViolationEvent;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
-import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import org.apache.logging.log4j.Level;
-import org.apache.logging.log4j.Logger;
 
 @Mod(   modid = ColorfulPotions.MODID,
         name = ColorfulPotions.NAME,
