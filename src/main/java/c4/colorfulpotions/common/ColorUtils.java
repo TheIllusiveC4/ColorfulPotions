@@ -20,27 +20,18 @@
 package c4.colorfulpotions.common;
 
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagByte;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.potion.PotionUtils;
 
 public class ColorUtils {
 
-    public static boolean hasColor(ItemStack stack) {
+    public static boolean isDyed(ItemStack stack) {
         NBTTagCompound nbttagcompound = stack.getTagCompound();
-        return (nbttagcompound != null && nbttagcompound.hasKey("display", 10)) && nbttagcompound.getCompoundTag("display").hasKey("color", 3);
+        return nbttagcompound != null && nbttagcompound.hasKey("dyed");
     }
 
-    public static int getColor(ItemStack stack) {
-        NBTTagCompound nbttagcompound = stack.getTagCompound();
-
-        if (nbttagcompound != null) {
-            NBTTagCompound nbttagcompound1 = nbttagcompound.getCompoundTag("display");
-
-            if (nbttagcompound1.hasKey("color", 3)) {
-                return nbttagcompound1.getInteger("color");
-            }
-        }
-        return PotionUtils.getColor(stack);
+    public static void setDyed(ItemStack stack) {
+        stack.setTagInfo("dyed", new NBTTagByte((byte)0));
     }
 
     public static void setColor(ItemStack stack, int color) {
@@ -50,11 +41,6 @@ public class ColorUtils {
             nbttagcompound = new NBTTagCompound();
             stack.setTagCompound(nbttagcompound);
         }
-        NBTTagCompound nbttagcompound1 = nbttagcompound.getCompoundTag("display");
-
-        if (!nbttagcompound.hasKey("display", 10)) {
-            nbttagcompound.setTag("display", nbttagcompound1);
-        }
-        nbttagcompound1.setInteger("color", color);
+        nbttagcompound.setInteger("CustomPotionColor", color);
     }
 }

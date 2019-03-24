@@ -17,14 +17,16 @@
  * License along with Colorful Potions.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-package c4.colorfulpotions.common;
+package c4.colorfulpotions.common.recipe;
 
 import c4.colorfulpotions.ColorfulPotions;
+import c4.colorfulpotions.common.ColorUtils;
 import net.minecraft.inventory.InventoryCrafting;
 import net.minecraft.item.EnumDyeColor;
 import net.minecraft.item.ItemPotion;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipe;
+import net.minecraft.potion.PotionUtils;
 import net.minecraft.util.NonNullList;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeHooks;
@@ -88,8 +90,8 @@ public class RecipePotionDyes extends IForgeRegistryEntry.Impl<IRecipe> implemen
                     itemstack = itemstack1.copy();
                     itemstack.setCount(1);
 
-                    if (ColorUtils.hasColor(itemstack1)) {
-                        int l = ColorUtils.getColor(itemstack);
+                    if (ColorUtils.isDyed(itemstack1)) {
+                        int l = PotionUtils.getColor(itemstack);
                         float f = (float)(l >> 16 & 255) / 255.0F;
                         float f1 = (float)(l >> 8 & 255) / 255.0F;
                         float f2 = (float)(l & 255) / 255.0F;
@@ -131,6 +133,10 @@ public class RecipePotionDyes extends IForgeRegistryEntry.Impl<IRecipe> implemen
             int k2 = (i1 << 8) + j1;
             k2 = (k2 << 8) + k1;
             ColorUtils.setColor(itemstack, k2);
+
+            if (!ColorUtils.isDyed(itemstack)) {
+                ColorUtils.setDyed(itemstack);
+            }
             return itemstack;
         }
     }
